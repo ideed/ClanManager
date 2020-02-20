@@ -35,11 +35,26 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void passwordCheck(String password,String RPassword){
-        if((password.equals(RPassword))&&(password.length()>=8)){
+        if((password.equals(RPassword))&&(password.length()>=8)&&(charCheck(password))){
             result.setText("Success");
         }
         else{
             result.setText("Fail");
         }
+    }
+
+    public Boolean charCheck(String password){
+        String special[]={"@","%","+","/","'","!","#","$","^","?",":",".","(",")","{","}","[","]","~","-","_",","};
+        Boolean charContained=false;
+        for(int j=0;j<=special.length;j++){
+            if(password.contains(special[j])){
+                charContained=true;
+                j=special.length;
+            }
+            else{
+                charContained=false;
+            }
+        }
+        return charContained;
     }
 }
