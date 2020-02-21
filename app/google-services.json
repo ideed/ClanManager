@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "607371568189",
+    "firebase_url": "https://clanmanager-e8c4c.firebaseio.com",
+    "project_id": "clanmanager-e8c4c",
+    "storage_bucket": "clanmanager-e8c4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607371568189:android:ec2120d097e50a9b327654",
+        "android_client_info": {
+          "package_name": "com.example.clanmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607371568189-5kcusp550eiqcd4ffp1rtq4h502bkasl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQYoMYgm9jIleT3a3sm-EARrqZsWVshKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607371568189-5kcusp550eiqcd4ffp1rtq4h502bkasl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
