@@ -1,45 +1,79 @@
 package com.example.clanmanager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegisterActivity extends AppCompatActivity {
-    private EditText userName;
     private EditText userEmail;
-    private EditText password;
-    private EditText repeatPassword;
+    private EditText userPassword;
+    private EditText userRepeatPassword;
     private Button signUp;
-    private TextView result;
+    private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        userName = (EditText)findViewById(R.id.userNameText);
         userEmail = (EditText)findViewById(R.id.emailText);
-        password = (EditText)findViewById(R.id.passwordText);
-        repeatPassword = (EditText)findViewById(R.id.RPasswordText);
+        userPassword = (EditText)findViewById(R.id.passwordText);
+        userRepeatPassword = (EditText)findViewById(R.id.RPasswordText);
         signUp = (Button)findViewById(R.id.btnSignUp);
-        result = (TextView)findViewById(R.id.textView);
+        mAuth = FirebaseAuth.getInstance();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                passwordCheck(password.getText().toString(),repeatPassword.getText().toString());
+                String email = userEmail.getText().toString().trim();
+                String password = userPassword.getText().toString().trim();
+                String repeatPassword = userRepeatPassword.getText().toString().trim();
+
+                if(TextUtils.isEmpty(email)||TextUtils.isEmpty(password)||TextUtils.isEmpty(repeatPassword)){
+                    Toast.makeText(RegisterActivity.this,"Please fill in all fields.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(passwordCheck(password,repeatPassword)){
+                    progressBar.setVisibility(View.VISIBLE);
+                    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(RegisterActivity.this,"User Created.",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
+                            }else{
+                                Toast.makeText(RegisterActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else{
+                    Toast.makeText(RegisterActivity.this,"Please make sure passwords match and includes 1 special character.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
     }
 
-    public void passwordCheck(String password,String RPassword){
+    public Boolean passwordCheck(String password,String RPassword){
         if((password.equals(RPassword))&&(password.length()>=8)&&(charCheck(password))){
-            result.setText("Success");
+            return true;
         }
         else{
-            result.setText("Fail");
+            return false;
         }
     }
 
