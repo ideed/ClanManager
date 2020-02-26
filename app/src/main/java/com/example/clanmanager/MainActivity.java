@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Register;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    private TextView passwordText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Register = (Button)findViewById(R.id.btnRegister);
         mAuth = FirebaseAuth.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
-
+        passwordText = (TextView) findViewById(R.id.passwordResetText);
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -49,11 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this,"Login Successful.",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
+
                         }else{
                             Toast.makeText(MainActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            return;
                         }
                     }
                 });
@@ -64,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+            }
+        });
+        passwordText.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(getApplicationContext(),passwordResetActivity.class));
             }
         });
     }

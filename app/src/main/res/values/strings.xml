@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Clan Manager</string>
+    <string name="title_activity_password_reset">PasswordResetActivity</string>
 </resources>

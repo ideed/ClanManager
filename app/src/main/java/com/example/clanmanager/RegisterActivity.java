@@ -52,11 +52,13 @@ public class RegisterActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
                                 Toast.makeText(RegisterActivity.this,"User Created.",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                return;
                             }
                         }
                     });
