@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private EditText userEmail;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private TextView passwordText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
+                        final FirebaseUser user = mAuth.getCurrentUser();
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this,"Login Successful.",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
-
+                            if(user.isEmailVerified()) {
+                                Toast.makeText(MainActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
+                            }else{
+                                Toast.makeText(MainActivity.this,"Please verify your email to log in.", Toast.LENGTH_SHORT).show();
+                            }
                         }else{
                             Toast.makeText(MainActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                             return;

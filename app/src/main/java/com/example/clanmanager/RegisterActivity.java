@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText userEmail;
@@ -39,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = userEmail.getText().toString().trim();
-                String password = userPassword.getText().toString().trim();
+                final String password = userPassword.getText().toString().trim();
                 String repeatPassword = userRepeatPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)||TextUtils.isEmpty(password)||TextUtils.isEmpty(repeatPassword)){
@@ -54,8 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
-                                Toast.makeText(RegisterActivity.this,"User Created.",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
+                                Toast.makeText(RegisterActivity.this,"User Created. Please check email to verify.",Toast.LENGTH_SHORT).show();
+                                sendEmail();
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                 return;
@@ -63,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
                 } else{
-                    Toast.makeText(RegisterActivity.this,"Please make sure passwords match and includes 1 special character.",Toast.LENGTH_SHORT).show();
+                    userPassword.setError("Please ensure that the passwords match and it is greater than 8 characters and contains a special character.");
                     return;
                 }
             }
@@ -93,4 +95,21 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return charContained;
     }
+
+    public void sendEmail(){
+       String email = userEmail.toString().trim();
+       String password = userPassword.toString().trim();
+       mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+            }
+       });
+       final FirebaseUser user = mAuth.getCurrentUser();
+       user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+            }
+       });
+    }
 }
+
