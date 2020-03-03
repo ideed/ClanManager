@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Clan Manager</string>
     <string name="title_activity_password_reset">PasswordResetActivity</string>
+    <string name="title_activity_award">AwardActivity</string>
 </resources>
