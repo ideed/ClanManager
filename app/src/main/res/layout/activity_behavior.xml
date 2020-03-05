@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:srcCompat="@mipmap/thummiddle" />
+        app:srcCompat="@mipmap/thumbsboth" />
 
     <ImageView
         android:id="@+id/imageView3"
