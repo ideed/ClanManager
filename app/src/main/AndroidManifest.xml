@@ -17,6 +17,7 @@
         <activity android:name=".BehaviorActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".RatingActivity" />
+        <activity android:name=".ClanActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
