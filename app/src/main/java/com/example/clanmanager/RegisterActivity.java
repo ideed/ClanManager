@@ -82,8 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public Boolean charCheck(String password){
-        String special[]={"@","%","+","/","'","!","#","$","^","?",":",".","(",")","{","}","[","]","~","-","_",","};
-        Boolean charContained=false;
+        String[] special ={"@","%","+","/","'","!","#","$","^","?",":",".","(",")","{","}","[","]","~","-","_",","};
+        boolean charContained=false;
         for(int j=0;j<=special.length;j++){
             if(password.contains(special[j])){
                 charContained=true;
