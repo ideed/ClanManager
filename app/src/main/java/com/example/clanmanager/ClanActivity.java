@@ -22,7 +22,7 @@ public class ClanActivity extends AppCompatActivity {
         join = (Button)findViewById(R.id.button);
         create = (Button)findViewById(R.id.button2);
         delete = (Button)findViewById(R.id.button3);
-        login = (Button)findViewById(R.id.button4);
+        login = (Button)findViewById(R.id.button3);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,21 +34,21 @@ public class ClanActivity extends AppCompatActivity {
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String joinClan = join.getText().toString().trim();
+                String joinClan = clanName.getText().toString().trim();
             }
         });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String deleteClan = delete.getText().toString().trim();
+                String deleteClan = clanName.getText().toString().trim();
             }
         });
 
         login .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String loginCLan = login .getText().toString().trim();
+                String loginCLan = clanName .getText().toString().trim();
             }
         });
     }
