@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainMenuActivity extends AppCompatActivity{
     private Button behaviorBn;
@@ -21,7 +19,7 @@ public class MainMenuActivity extends AppCompatActivity{
         Button eventBn = (Button) findViewById(R.id.eventBtn);
         Button awardBn = (Button) findViewById(R.id.awardsBtn);
         behaviorBn= (Button) findViewById(R.id.behaviorBtn);
-        Button helpBn = (Button) findViewById(R.id.helpBtn);
+        Button helpBn = (Button) findViewById(R.id.skillsBtn);
         rankingBn = (Button) findViewById(R.id.rankingBtn);
 
         memberBn.setOnClickListener(new View.OnClickListener() {

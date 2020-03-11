@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             if(user.isEmailVerified()) {
                                 Toast.makeText(MainActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
+                                startActivity(new Intent(getApplicationContext(), ClanActivity.class));
                             }else{
                                 Toast.makeText(MainActivity.this,"Please verify your email to log in.", Toast.LENGTH_SHORT).show();
                             }

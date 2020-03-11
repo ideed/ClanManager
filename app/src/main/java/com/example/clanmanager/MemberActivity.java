@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 
@@ -37,8 +36,8 @@ public class MemberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member);
 
         back = (Button)findViewById(R.id.button1);
-        addMember = (Button)findViewById(R.id.button2);
-        member1 = (Button)findViewById(R.id.button3);
+        addMember = (Button)findViewById(R.id.joinBtn);
+        member1 = (Button)findViewById(R.id.deleteBtn);
         member2 = (Button)findViewById(R.id.button4);
         member3 = (Button)findViewById(R.id.button5);
         member4 = (Button)findViewById(R.id.button6);
