@@ -11,10 +11,7 @@
         android:roundIcon="@mipmap/clan_manager_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MembersPageActivity"></activity>
-        <activity android:name=".MemberActivity" />
-        <activity android:name=".EventActivity" />
-        <activity android:name=".AwardsActivity" />
+        <activity android:name=".AwardsActivity"></activity>
         <activity android:name=".passwordResetActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainMenuActivity" />
@@ -22,6 +19,8 @@
         <activity android:name=".RankingActivity" />
         <activity android:name=".RatingActivity" />
         <activity android:name=".ClanActivity" />
+        <activity android:name=".MemberActivity"/>
+        <activity android:name=".EventActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,17 +17,17 @@ public class MainMenuActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_r);
 
-        //Button memberBn = (Button) findViewById(R.id.membersBtn);
-      //  Button eventBn = (Button) findViewById(R.id.eventBtn);
-       // Button awardBn = (Button) findViewById(R.id.awardsBtn);
+        Button memberBn = (Button) findViewById(R.id.membersBtn);
+        Button eventBn = (Button) findViewById(R.id.eventBtn);
+        Button awardBn = (Button) findViewById(R.id.awardsBtn);
         behaviorBn= (Button) findViewById(R.id.behaviorBtn);
-       // Button helpBn = (Button) findViewById(R.id.helpBtn);
+        Button helpBn = (Button) findViewById(R.id.helpBtn);
         rankingBn = (Button) findViewById(R.id.rankingBtn);
 
-        /*memberBn.setOnClickListener(new View.OnClickListener() {
+        memberBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent int1 = new Intent(MainMenuActivity.this,MembersActivity.class);
+                Intent int1 = new Intent(MainMenuActivity.this,MemberActivity.class);
                 startActivity(int1);
             }
         });
@@ -47,7 +47,7 @@ public class MainMenuActivity extends AppCompatActivity{
                 startActivity(int3);
             }
         });
-*/
+
         behaviorBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,14 +55,14 @@ public class MainMenuActivity extends AppCompatActivity{
             }
         });
 
-      /*  helpBn.setOnClickListener(new View.OnClickListener() {
+        helpBn.setOnClickListener(new View.OnClickListener() {//ranting tester
             @Override
             public void onClick(View v) {
-                Intent int5 = new Intent(MainMenuActivity.this,helpActivity.class);
+                Intent int5 = new Intent(MainMenuActivity.this,RatingActivity.class);
                 startActivity(int5);
             }
         });
-*/
+
         rankingBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
