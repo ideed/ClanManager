@@ -21,20 +21,18 @@
         android:id="@+id/highCommand"
         android:layout_width="133dp"
         android:layout_height="74dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
         android:text="HIGH COMMAND"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/officer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
 
     <Button
         android:id="@+id/officer"
         android:layout_width="135dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="304dp"
+        android:layout_marginBottom="288dp"
         android:text="Officer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,16 +64,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.995" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="256dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="132dp"
+        android:layout_width="163dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="36dp"
         android:text="DETACHMENT 1 RANKS"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
+        app:layout_constraintHorizontal_bias="0.968"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,13 +93,14 @@
 
     <TextView
         android:id="@+id/rankingTv"
-        android:layout_width="163dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:layout_width="162dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif"
         android:text="RANKING"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

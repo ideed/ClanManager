@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainMenuActivity extends AppCompatActivity{
     private Button behaviorBn;
-    private Button rankingBn;
+    private Button detachmentBn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +19,8 @@ public class MainMenuActivity extends AppCompatActivity{
         Button eventBn = (Button) findViewById(R.id.eventBtn);
         Button awardBn = (Button) findViewById(R.id.awardsBtn);
         behaviorBn= (Button) findViewById(R.id.behaviorBtn);
-        Button helpBn = (Button) findViewById(R.id.skillsBtn);
-        rankingBn = (Button) findViewById(R.id.rankingBtn);
+        Button skillsBn = (Button) findViewById(R.id.skillsBtn);
+        detachmentBn = (Button) findViewById(R.id.detachmentBtn);
 
         memberBn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class MainMenuActivity extends AppCompatActivity{
             }
         });
 
-        helpBn.setOnClickListener(new View.OnClickListener() {//ranting tester
+        skillsBn.setOnClickListener(new View.OnClickListener() {//ranting tester
             @Override
             public void onClick(View v) {
                 Intent int5 = new Intent(MainMenuActivity.this,RatingActivity.class);
@@ -61,10 +61,10 @@ public class MainMenuActivity extends AppCompatActivity{
             }
         });
 
-        rankingBn.setOnClickListener(new View.OnClickListener() {
+        detachmentBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),RankingActivity.class));
+                startActivity(new Intent(getApplicationContext(),DetachmentsActivity.class));
             }
         });
     }

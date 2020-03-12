@@ -24,7 +24,7 @@ public class RatingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(ratingBar.getRating());
-                Toast.makeText(getApplicationContext(),s+"Star",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),s+"  Star",Toast.LENGTH_SHORT).show();
 
             }
         });

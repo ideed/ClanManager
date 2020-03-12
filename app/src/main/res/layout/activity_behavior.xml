@@ -11,33 +11,62 @@
         android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginRight="176dp"
         android:text="SUBMIT"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/search"
-        android:layout_width="294dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="227dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:clickable="true"
-        android:queryHint="Search a member..."
         android:iconifiedByDefault="false"
+        android:queryHint="Search a member..."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="288dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="168dp"
+        android:layout_width="249dp"
+        android:layout_height="294dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="135dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:text="MEMBER BEHAVIOR"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/thumbsUp"
+        android:layout_width="82dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/ic_thumbs_up"
+        android:textOff=""
+        android:textOn=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,71 +74,62 @@
         android:id="@+id/editComment"
         android:layout_width="299dp"
         android:layout_height="123dp"
-        android:layout_marginBottom="48dp"
-        android:text="Write comments here"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="344dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
         android:lineSpacingExtra="8sp"
+        android:text="Write comments here"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="14sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thumbsUp"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="232dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="40dp"
-        android:text="MEMBER BEHAVIOR"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/recyclerView"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/thumbsboth"
-        android:layout_width="0dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="204dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginRight="145dp"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/thumbsUp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/thumbsboth" />
-
-    <ImageView
-        android:id="@+id/thumbsUp"
-        android:clickable="true"
-        android:layout_width="0dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/thumbsboth"
-        app:layout_constraintHorizontal_bias="0.888"
+    <ToggleButton
+        android:id="@+id/thumbsMiddle"
+        android:layout_width="124dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="224dp"
+        android:background="@drawable/ic_thumbs_both"
+        android:textOff=""
+        android:textOn=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search"
-        app:srcCompat="@mipmap/thumbsup" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ToggleButton
         android:id="@+id/thumbsDown"
-        android:clickable="true"
-        android:layout_width="117dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="78dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/ic_thumbs_down"
+        android:textOff=""
+        android:textOn=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toEndOf="@+id/thumbsboth"
-        app:layout_constraintTop_toBottomOf="@+id/search"
-        app:srcCompat="@mipmap/thumbsdown" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/thumbsMiddle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="160dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="148dp"
+        android:text="MEMBER NAME"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,17 +14,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
 public class BehaviorActivity extends AppCompatActivity {
-    EditText search_box;
+   // EditText search_box;
     RecyclerView memberNameList;
     Button submitBtn;
     EditText editComment;
-    ImageView thumbsUp;
-    ImageView thumbs_middle;
-    ImageView thumbsDown;
+    ToggleButton thumbsUp;
+    ToggleButton thumbs_middle;
+    ToggleButton thumbsDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,9 @@ public class BehaviorActivity extends AppCompatActivity {
         memberNameList = (RecyclerView) findViewById(R.id.recyclerView);
         submitBtn = (Button) findViewById(R.id.submitBtn);
         editComment = (EditText) findViewById(R.id.editComment);
-        thumbsUp = (ImageView) findViewById(R.id.thumbsUp);
-        thumbs_middle = (ImageView) findViewById(R.id.thumbsboth);
-        thumbsDown = (ImageView) findViewById(R.id.thumbsDown);
+        thumbsUp = (ToggleButton) findViewById(R.id.thumbsUp);
+        thumbs_middle = (ToggleButton) findViewById(R.id.thumbsMiddle);
+        thumbsDown = (ToggleButton) findViewById(R.id.thumbsDown);
 
         submitBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -57,5 +58,9 @@ public class BehaviorActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void onCustomToggleThumbsUpClick(View view) {
+        Toast.makeText(this, "CustomToggleThumbsUp", Toast.LENGTH_SHORT).show();
     }
 }

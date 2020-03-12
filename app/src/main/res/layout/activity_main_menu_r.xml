@@ -12,17 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginRight="82dp"
         android:layout_marginBottom="40dp"
         android:text="Overview"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintStart_toEndOf="@+id/navigationView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/navigationView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
-        android:layout_width="141dp"
-        android:layout_height="659dp"
+        android:layout_width="133dp"
+        android:layout_height="580dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
@@ -40,37 +45,37 @@
             <Button
                 android:id="@+id/membersBtn"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="95dp"
                 android:text="MEMBERS" />
 
             <Button
-                android:id="@+id/rankingBtn"
+                android:id="@+id/detachmentBtn"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:text="RANKING" />
+                android:layout_height="95dp"
+                android:text="DETACHMENTS" />
 
             <Button
                 android:id="@+id/eventBtn"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="95dp"
                 android:text="EVENT" />
 
             <Button
                 android:id="@+id/awardsBtn"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="95dp"
                 android:text="AWARDS" />
 
             <Button
                 android:id="@+id/behaviorBtn"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="95dp"
                 android:text="BEHAVIOR" />
 
             <Button
                 android:id="@+id/skillsBtn"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="95dp"
                 android:text="SKILLS" />
 
         </LinearLayout>
@@ -78,8 +83,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="226dp"
-        android:layout_height="533dp"
+        android:layout_width="242dp"
+        android:layout_height="491dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
