@@ -29,7 +29,7 @@ public class ClanActivity extends AppCompatActivity {
         clanName = (EditText)findViewById(R.id.editText1);
         create = (Button)findViewById(R.id.createBtn);
         join = (Button)findViewById(R.id.joinBtn);
-        delete = (Button)findViewById(R.id.deleteBtn);
+        delete = (Button)findViewById(R.id.button1);
 
 
         database = FirebaseDatabase.getInstance();

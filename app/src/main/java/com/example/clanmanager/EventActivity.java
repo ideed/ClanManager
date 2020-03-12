@@ -18,8 +18,8 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        back = (Button)findViewById(R.id.button7);
-        editEvents = (Button)findViewById(R.id.button8);
+        back = (Button)findViewById(R.id.button5);
+        editEvents = (Button)findViewById(R.id.button6);
         calender = (CalendarView)findViewById(R.id.calendarView);
 
         back.setOnClickListener(new View.OnClickListener() {

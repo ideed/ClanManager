@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Clan Manager</string>
+
+    <string-array name="names">
+        <item>Home</item>item>
+        <item>About</item>item>
+        <item>Activity</item>item>
+        <item>Address</item>item>
+    </string-array>>
+
     <string name="title_activity_password_reset">PasswordResetActivity</string>
     <string name="title_activity_award">AwardActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
