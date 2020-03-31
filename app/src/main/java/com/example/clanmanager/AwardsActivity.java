@@ -26,7 +26,7 @@ public class AwardsActivity extends AppCompatActivity {
         back = (Button)findViewById(R.id.backBtn);
         addAward = (Button)findViewById(R.id.button2);
         addImageAward = (ImageButton)findViewById(R.id.imageButton);
-        awardList = (ScrollView)findViewById(R.id.scrollView1);
+        awardList = (ScrollView)findViewById(R.id.scrollView);
         memberList = (Spinner)findViewById(R.id.spinner);
 
         back.setOnClickListener(new View.OnClickListener() {

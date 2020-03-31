@@ -8,11 +8,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 
 public class MembersPageActivity extends AppCompatActivity {
-
     private Button back;
     private Button deleteMember;
     private RatingBar rating;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

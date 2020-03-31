@@ -29,18 +29,18 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:clickable="true"
         android:iconifiedByDefault="false"
         android:queryHint="Search a member..."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/search_border"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="249dp"
-        android:layout_height="294dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
+        android:layout_width="223dp"
+        android:layout_height="293dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search" />
 
@@ -72,6 +72,7 @@
 
     <EditText
         android:id="@+id/editComment"
+        android:background="@drawable/edit_text_border"
         android:layout_width="299dp"
         android:layout_height="123dp"
         android:layout_marginStart="56dp"
@@ -79,14 +80,17 @@
         android:layout_marginTop="344dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
+        android:gravity="top"
+        android:inputType="textCapSentences|textMultiLine"
         android:lineSpacingExtra="8sp"
-        android:text="Write comments here"
+        android:minHeight="120dp"
+        android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="14sp"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/recyclerView"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,6 +117,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/ic_thumbs_down"
+        android:checked="false"
+        android:clickable="false"
         android:textOff=""
         android:textOn=""
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,5 +137,17 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/commentTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginBottom="272dp"
+        android:text="Comment :"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

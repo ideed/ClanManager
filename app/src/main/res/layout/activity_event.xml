@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/skillTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="85dp"
@@ -70,5 +70,5 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/skillTv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

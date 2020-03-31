@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 
 public class BehaviorActivity extends AppCompatActivity {
-   // EditText search_box;
+    SearchView search;
     RecyclerView memberNameList;
     Button submitBtn;
     EditText editComment;
@@ -32,7 +32,7 @@ public class BehaviorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_behavior);
 
-        //search_box = (EditText) findViewById(R.id.search);
+        search = (SearchView) findViewById(R.id.search);
         memberNameList = (RecyclerView) findViewById(R.id.recyclerView);
         submitBtn = (Button) findViewById(R.id.submitBtn);
         editComment = (EditText) findViewById(R.id.editComment);

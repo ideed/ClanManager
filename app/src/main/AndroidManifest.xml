@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clanmanager">
 
+
+    <supports-screens
+        android:resizeable="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,6 +32,7 @@
         <activity android:name=".EventActivity"/>
         <activity android:name=".MembersPageActivity"/>
         <activity android:name=".DetachmentsActivity"/>
+        <activity android:name=".AddRatingActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
