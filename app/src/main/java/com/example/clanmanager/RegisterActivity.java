@@ -17,14 +17,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText userEmail;
     private EditText userPassword;
     private EditText userRepeatPassword;
+    private EditText userName;
     private Button signUp;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private DatabaseReference userInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +38,19 @@ public class RegisterActivity extends AppCompatActivity {
         userPassword = (EditText)findViewById(R.id.passwordText);
         userRepeatPassword = (EditText)findViewById(R.id.RPasswordText);
         signUp = (Button)findViewById(R.id.btnSignUp);
+        userName = (EditText)findViewById(R.id.userNameText);
         mAuth = FirebaseAuth.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        userInfo = FirebaseDatabase.getInstance().getReference("users");
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = userEmail.getText().toString().trim();
+                final String userId = userName.getText().toString().trim();
+                final String email = userEmail.getText().toString().trim();
                 final String password = userPassword.getText().toString().trim();
                 String repeatPassword = userRepeatPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)||TextUtils.isEmpty(password)||TextUtils.isEmpty(repeatPassword)){
+                if(TextUtils.isEmpty(email)||TextUtils.isEmpty(password)||TextUtils.isEmpty(repeatPassword)||TextUtils.isEmpty(userId)){
                     Toast.makeText(RegisterActivity.this,"Please fill in all fields.",Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -55,18 +62,18 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
+                                User user = new User(userId, email, password);
+                                userInfo.child(userId).setValue(user);
                                 Toast.makeText(RegisterActivity.this,"User Created. Please check email to verify.",Toast.LENGTH_SHORT).show();
                                 sendEmail();
                                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                                return;
                             }
                         }
                     });
                 } else{
                     userPassword.setError("Please ensure that the passwords match and it is greater than 8 characters and contains a special character.");
-                    return;
                 }
             }
         });
