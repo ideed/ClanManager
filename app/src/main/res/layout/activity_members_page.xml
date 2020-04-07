@@ -128,7 +128,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="140dp"
         android:layout_marginRight="140dp"
-        android:text="OverAll Skill:"
+        android:text="Overall Skill:"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

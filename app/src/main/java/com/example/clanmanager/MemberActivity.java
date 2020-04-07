@@ -25,6 +25,7 @@ public class MemberActivity extends AppCompatActivity {
     private ScrollView scroll;
     private DatabaseReference clanInfo;
     private  DatabaseReference userInfo;
+    private DatabaseReference memberInfo;
     private FirebaseAuth mAuth;
     private String userName;
     @Override
@@ -38,6 +39,7 @@ public class MemberActivity extends AppCompatActivity {
         scroll = (ScrollView)findViewById(R.id.scrollView1);
         userInfo = FirebaseDatabase.getInstance().getReference("users");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
+        memberInfo = FirebaseDatabase.getInstance().getReference("clans").child("Members");
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -58,15 +60,10 @@ public class MemberActivity extends AppCompatActivity {
             }
         });
 
-        clanInfo.addValueEventListener(new ValueEventListener() {
+        memberInfo.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Clan clan = snapshot.getValue(Clan.class);
-                    if(clan.owner.equals(userName)){
 
-                    }
-                }
             }
 
             @Override
@@ -74,6 +71,7 @@ public class MemberActivity extends AppCompatActivity {
 
             }
         });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +82,7 @@ public class MemberActivity extends AppCompatActivity {
         addMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MemberActivity.this, AddMemberActivity.class));
             }
         });
 
