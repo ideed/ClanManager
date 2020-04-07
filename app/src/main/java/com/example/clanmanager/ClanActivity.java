@@ -29,7 +29,18 @@ public class ClanActivity extends AppCompatActivity {
     private TextView welcome;
     private String userName;
     private DatabaseReference clanInfo;
+    private String clanNam;
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getClanNam() {
+        return clanNam;
+    }
+
+    public ClanActivity(){
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +54,7 @@ public class ClanActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         userInfo = FirebaseDatabase.getInstance().getReference("users");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
+
 
 
         userInfo.addValueEventListener(new ValueEventListener() {
@@ -68,13 +80,35 @@ public class ClanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String owner = userName;
                 final String clanId = clanName.getText().toString().trim();
+
                 if(TextUtils.isEmpty(clanId)){
                     Toast.makeText(ClanActivity.this,"Please type in a clan name.",Toast.LENGTH_SHORT).show();
                 }else{
-                    Clan clan = new Clan(clanId, owner);
-                    clanInfo.child(clanId).setValue(clan);
-                    Toast.makeText(ClanActivity.this, "Clan Created!",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
+                    clanInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            boolean clanCheck = true;
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                Clan clan = snapshot.getValue(Clan.class);
+                                if(clan.clanName.equals(clanId)||clan.owner.equals(owner)){
+                                    Toast.makeText(ClanActivity.this,"Clan name already exists or you already have a clan.",Toast.LENGTH_SHORT).show();
+                                    clanCheck=false;
+                                }
+                            }
+                            if(clanCheck){
+                                Clan clan = new Clan(clanId, owner);
+                                clanInfo.child(clanId).setValue(clan);
+                                clanNam = clanId;
+                                Toast.makeText(ClanActivity.this, "Clan Created!",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             }
         });
@@ -93,6 +127,7 @@ public class ClanActivity extends AppCompatActivity {
                             for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                                 Clan clan = snapshot.getValue(Clan.class);
                                 if(clan.clanName.equals(clanId)){
+                                    clanNam = clan.clanName;
                                     Toast.makeText(ClanActivity.this,"Clan joined!",Toast.LENGTH_SHORT).show();
                                     checker = true;
                                     startActivity(new Intent(getApplicationContext(),MainMenuActivity.class));
@@ -144,5 +179,7 @@ public class ClanActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 }

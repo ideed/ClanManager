@@ -6,7 +6,8 @@
         <item>About</item>item>
         <item>Activity</item>item>
         <item>Address</item>item>
-    </string-array>>
+    </string-array>
+    >
 
     <string name="title_activity_password_reset">PasswordResetActivity</string>
     <string name="title_activity_award">AwardActivity</string>
@@ -110,4 +111,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_add_member">AddMemberActivity</string>
 </resources>

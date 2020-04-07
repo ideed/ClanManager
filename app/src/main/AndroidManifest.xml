@@ -2,14 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clanmanager">
 
-
     <supports-screens
-        android:resizeable="true"
+        android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
+        android:resizeable="true"
         android:smallScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true"/>
+        android:xlargeScreens="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -20,19 +19,19 @@
         android:roundIcon="@mipmap/clan_manager_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RatingActivity" />
         <activity android:name=".AwardsActivity" />
         <activity android:name=".passwordResetActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".BehaviorActivity" />
         <activity android:name=".RankingActivity" />
-        <activity android:name=".RatingActivity" />
         <activity android:name=".ClanActivity" />
-        <activity android:name=".MemberActivity"/>
-        <activity android:name=".EventActivity"/>
-        <activity android:name=".MembersPageActivity"/>
-        <activity android:name=".DetachmentsActivity"/>
-        <activity android:name=".AddRatingActivity"/>
+        <activity android:name=".MemberActivity" />
+        <activity android:name=".EventActivity" />
+        <activity android:name=".MembersPageActivity" />
+        <activity android:name=".DetachmentsActivity" />
+        <activity android:name=".AddRatingActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

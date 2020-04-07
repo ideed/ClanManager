@@ -1,21 +1,21 @@
 package com.example.clanmanager;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AwardsActivity extends AppCompatActivity {
 
     private Button back;
     private Button addAward;
     private ImageButton addImageAward;
-    private ScrollView awardList;
+    private SearchView awardList;
     private Spinner memberList;
 
     @Override
@@ -26,7 +26,7 @@ public class AwardsActivity extends AppCompatActivity {
         back = (Button)findViewById(R.id.backBtn);
         addAward = (Button)findViewById(R.id.button2);
         addImageAward = (ImageButton)findViewById(R.id.imageButton);
-        awardList = (ScrollView)findViewById(R.id.scrollView);
+        awardList = (SearchView) findViewById(R.id.scrollView);
         memberList = (Spinner)findViewById(R.id.spinner);
 
         back.setOnClickListener(new View.OnClickListener() {

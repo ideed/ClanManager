@@ -7,7 +7,7 @@
     tools:context=".MembersPageActivity">
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -37,7 +37,7 @@
         android:layout_marginTop="70dp"
         android:text="UserName:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button18" />
+        app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
     <TextView
         android:id="@+id/textView11"
@@ -114,6 +114,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="86dp"
         android:layout_marginRight="86dp"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
