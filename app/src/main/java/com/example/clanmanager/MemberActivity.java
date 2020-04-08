@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 
@@ -28,6 +29,7 @@ public class MemberActivity extends AppCompatActivity {
     private DatabaseReference memberInfo;
     private FirebaseAuth mAuth;
     private String userName;
+    private String clanName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class MemberActivity extends AppCompatActivity {
         scroll = (ScrollView)findViewById(R.id.scrollView1);
         userInfo = FirebaseDatabase.getInstance().getReference("users");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
-        memberInfo = FirebaseDatabase.getInstance().getReference("clans").child("Members");
+        memberInfo = clanInfo.child("Test Clan").child("Members");
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -63,6 +65,21 @@ public class MemberActivity extends AppCompatActivity {
         memberInfo.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    Member member = dataSnapshot1.getValue(Member.class);
+                    Button myButton = new Button(MemberActivity.this);
+                    myButton.setText(member.memberName);
+                    myButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(MemberActivity.this, MembersPageActivity.class));
+                        }
+                    });
+
+                    LinearLayout ll = (LinearLayout)findViewById(R.id.scrollLayout);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    ll.addView(myButton, lp);
+                }
 
             }
 
@@ -71,6 +88,8 @@ public class MemberActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
