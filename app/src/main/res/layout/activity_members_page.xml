@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/countryView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -81,7 +81,7 @@
         android:layout_marginRight="140dp"
         android:text="Country of Origin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        app:layout_constraintTop_toBottomOf="@+id/dateView" />
 
     <TextView
         android:id="@+id/textView16"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/attendenceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -103,7 +103,7 @@
         android:layout_marginRight="140dp"
         android:text="Attendence Rate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/countryView" />
 
     <RatingBar
         android:id="@+id/ratingBar1"
@@ -132,7 +132,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/attendenceView" />
 
     <TextView
         android:id="@+id/textView19"
@@ -209,7 +209,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button19" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -217,5 +217,5 @@
         android:layout_marginRight="140dp"
         android:text="Date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/nameView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

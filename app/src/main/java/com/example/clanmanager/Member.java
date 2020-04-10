@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Member {
     public String memberName;
-    private int overallSkill ;
-    private Date memberDate;
-    private String memberCOO;
-    private double attendencePercentage;
+    public int overallSkill ;
+    public Date memberDate;
+    public String memberCOO;
+    public double attendencePercentage;
 
     public Member(){
 

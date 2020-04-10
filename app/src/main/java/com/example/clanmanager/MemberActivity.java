@@ -66,19 +66,22 @@ public class MemberActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    Member member = dataSnapshot1.getValue(Member.class);
+                    final Member member = dataSnapshot1.getValue(Member.class);
                     Button myButton = new Button(MemberActivity.this);
                     myButton.setText(member.memberName);
-                    myButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(MemberActivity.this, MembersPageActivity.class));
-                        }
-                    });
 
                     LinearLayout ll = (LinearLayout)findViewById(R.id.scrollLayout);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     ll.addView(myButton, lp);
+                    myButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MembersPageActivity mpa = new MembersPageActivity();
+                            Intent intent = new Intent(MemberActivity.this, MembersPageActivity.class).putExtra("memberName",member.memberName).putExtra("overallSkill",member.overallSkill);
+                            intent.putExtra("memberDate",member.memberDate).putExtra("memberCOO",member.memberCOO).putExtra("attendencePercentage",member.attendencePercentage);
+                            startActivity(intent);
+                        }
+                    });
                 }
 
             }
@@ -105,12 +108,7 @@ public class MemberActivity extends AppCompatActivity {
             }
         });
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
     }
 }
