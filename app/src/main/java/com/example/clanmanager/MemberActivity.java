@@ -35,13 +35,14 @@ public class MemberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member);
 
+        clanName = getIntent().getStringExtra("clanName");
         back = (Button)findViewById(R.id.backBtn);
         addMember = (Button)findViewById(R.id.joinBtn);
         search = (SearchView)findViewById(R.id.searchView1);
         scroll = (ScrollView)findViewById(R.id.scrollView1);
         userInfo = FirebaseDatabase.getInstance().getReference("users");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
-        memberInfo = clanInfo.child("Test Clan").child("Members");
+        memberInfo = clanInfo.child(clanName).child("Members");
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -78,7 +79,7 @@ public class MemberActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             MembersPageActivity mpa = new MembersPageActivity();
                             Intent intent = new Intent(MemberActivity.this, MembersPageActivity.class).putExtra("memberName",member.memberName).putExtra("overallSkill",member.overallSkill);
-                            intent.putExtra("memberDate",member.memberDate).putExtra("memberCOO",member.memberCOO).putExtra("attendencePercentage",member.attendencePercentage);
+                            intent.putExtra("memberDate",member.memberDate).putExtra("memberCOO",member.memberCOO).putExtra("attendencePercentage",member.attendencePercentage).putExtra("clanName",clanName);
                             startActivity(intent);
                         }
                     });
@@ -104,7 +105,7 @@ public class MemberActivity extends AppCompatActivity {
         addMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MemberActivity.this, AddMemberActivity.class));
+                startActivity(new Intent(MemberActivity.this, AddMemberActivity.class).putExtra("clanName",clanName));
             }
         });
 

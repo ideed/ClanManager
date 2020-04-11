@@ -23,6 +23,7 @@ public class MainMenuActivity extends AppCompatActivity{
     DatabaseReference userInfo;
     FirebaseAuth mAuth;
     String userName = "";
+    String clanName = "";
     private DatabaseReference clanInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class MainMenuActivity extends AppCompatActivity{
                     Clan clan = snapshot.getValue(Clan.class);
                     if(clan.owner.equals(userName)){
                         clanView.setText(clan.clanName);
+                        clanName = clan.clanName;
                     }
                 }
             }
@@ -93,7 +95,7 @@ public class MainMenuActivity extends AppCompatActivity{
         memberBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainMenuActivity.this,MemberActivity.class));
+                startActivity(new Intent(MainMenuActivity.this,MemberActivity.class).putExtra("clanName",clanName));
             }
         });
         //Works:

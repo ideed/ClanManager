@@ -32,11 +32,13 @@ public class AddMemberActivity extends AppCompatActivity {
     private EditText username;
     private EditText date;
     private  EditText country;
+    private String clanName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_member);
 
+        clanName = getIntent().getStringExtra("clanName");
         userInfo = FirebaseDatabase.getInstance().getReference("users");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
         mAuth = FirebaseAuth.getInstance();
@@ -80,7 +82,7 @@ public class AddMemberActivity extends AppCompatActivity {
                                         Member member = new Member(username.getText().toString().trim(),sendDate,country.getText().toString().trim(),0.00,0);
                                         clanInfo.child(clan.clanName).child("Members").child(username.getText().toString().trim()).setValue(member);
                                         Toast.makeText(AddMemberActivity.this,"Member added!",Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(AddMemberActivity.this, MemberActivity.class));
+                                        startActivity(new Intent(AddMemberActivity.this, MemberActivity.class).putExtra("clanName",clanName));
                                     } catch (ParseException e) {
                                         Toast.makeText(AddMemberActivity.this, "Error: "+e, Toast.LENGTH_SHORT).show();
                                     }
