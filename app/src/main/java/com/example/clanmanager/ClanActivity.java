@@ -28,6 +28,7 @@ public class ClanActivity extends AppCompatActivity {
     private DatabaseReference userInfo;
     private TextView welcome;
     private String userName;
+    private String email;
     private DatabaseReference clanInfo;
     private String clanNam;
 
@@ -54,7 +55,7 @@ public class ClanActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         userInfo = FirebaseDatabase.getInstance().getReference("users");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
-
+        email = getIntent().getStringExtra("email");
 
 
         userInfo.addValueEventListener(new ValueEventListener() {
@@ -62,7 +63,7 @@ public class ClanActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    if(user.email.equals(mAuth.getCurrentUser().getEmail())){
+                    if(user.email.equals(email)){
                         userName = user.userName.trim();
                         welcome.setText("Welcome "+userName+"!");
                     }

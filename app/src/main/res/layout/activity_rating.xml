@@ -6,88 +6,91 @@
     android:layout_height="match_parent"
     tools:context=".RatingActivity">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="197dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
-        android:background="#B9009688"
-        android:clickable="false"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="105dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
+        android:layout_width="93dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:text="Skills"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toStartOf="@+id/memberText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="380dp"
-        android:layout_height="470dp"
+        android:layout_width="364dp"
+        android:layout_height="477dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/addbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/memberText">
 
         <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Member Name"
-                android:textSize="24sp"
+                android:text="No Member Selected"
+                android:textSize="30sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Skill Name"
-                android:textSize="18sp" />
-
-            <RatingBar
-                android:id="@+id/ratingBar2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addbutton"
         android:layout_width="239dp"
         android:layout_height="62dp"
         android:layout_marginStart="86dp"
         android:layout_marginLeft="86dp"
         android:layout_marginEnd="86dp"
         android:layout_marginRight="86dp"
-        android:layout_marginBottom="11dp"
         android:text="ADD SKILL"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <EditText
+        android:id="@+id/memberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:hint="Search a member..."
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toStartOf="@+id/SearchBtn"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/SearchBtn"
+        android:layout_width="63dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/memberText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.625"
+        app:srcCompat="@android:drawable/ic_menu_search" />
 </androidx.constraintlayout.widget.ConstraintLayout>

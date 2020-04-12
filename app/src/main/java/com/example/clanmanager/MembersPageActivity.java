@@ -9,11 +9,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,7 +35,7 @@ public class MembersPageActivity extends AppCompatActivity {
     public double attendencePercentage;
     private DatabaseReference clanInfo;
     private DatabaseReference memberInfo;
-
+    private DatabaseReference skillInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class MembersPageActivity extends AppCompatActivity {
 
         Button back = (Button) findViewById(R.id.backBtn);
         Button deleteMember = (Button) findViewById(R.id.button19);
-        RatingBar rating = (RatingBar) findViewById(R.id.ratingBar1);
+        final RatingBar rating = (RatingBar) findViewById(R.id.ratingBar1);
         TextView name = (TextView) findViewById(R.id.nameView);
         TextView date = (TextView) findViewById(R.id.dateView);
         TextView country = (TextView) findViewById(R.id.countryView);
@@ -53,12 +57,13 @@ public class MembersPageActivity extends AppCompatActivity {
         memberDate = (Date)getIntent().getSerializableExtra("memberDate");
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
         memberInfo = clanInfo.child(clanName).child("Members").child(memberName);
+        skillInfo = memberInfo.child("skills");
+
         name.setText(memberName);
         country.setText(memberCOO);
         attendence.setText(attendencePercentage+"%");
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.YYYY");
         String formatDate = df.format(memberDate);
-        rating.setRating(overallSkill);
         date.setText(formatDate);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +95,25 @@ public class MembersPageActivity extends AppCompatActivity {
                         });
                     AlertDialog ad = builder.create();
                     ad.show();
+            }
+        });
+
+        skillInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int rate = 0;
+                int noOfSkills = 0;
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    Skill skill = snapshot.getValue(Skill.class);
+                    rate = rate+skill.skillRate;
+                    noOfSkills++;
+                }
+                rating.setRating(Math.round(rate/noOfSkills));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

@@ -1,6 +1,5 @@
 package com.example.clanmanager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,7 +32,7 @@ public class AddRatingActivity extends AppCompatActivity {
 
 
                 if(TextUtils.isEmpty(skillName)||TextUtils.isEmpty(s)){
-                    Toast.makeText(AddRatingActivity.this,"Please type skill name and rate.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddRatingActivity.this,"Please type Skill name and rate.",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else{

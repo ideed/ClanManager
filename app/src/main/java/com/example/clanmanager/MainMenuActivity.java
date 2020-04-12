@@ -123,7 +123,7 @@ public class MainMenuActivity extends AppCompatActivity{
         skillsBn.setOnClickListener(new View.OnClickListener() {//ranting tester
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainMenuActivity.this,RatingActivity.class));
+                startActivity(new Intent(MainMenuActivity.this,RatingActivity.class).putExtra("clanName",clanName));
             }
         });
 
