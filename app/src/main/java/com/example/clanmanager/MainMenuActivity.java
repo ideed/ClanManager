@@ -98,7 +98,7 @@ public class MainMenuActivity extends AppCompatActivity{
                 startActivity(new Intent(MainMenuActivity.this,MemberActivity.class).putExtra("clanName",clanName));
             }
         });
-        //Works:
+
         eventBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,11 +112,11 @@ public class MainMenuActivity extends AppCompatActivity{
                 startActivity(new Intent(MainMenuActivity.this,AwardsActivity.class));
             }
         });
-        //Works:
+
         behaviorBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainMenuActivity.this,BehaviorActivity.class));
+                startActivity(new Intent(MainMenuActivity.this,BehaviorActivity.class).putExtra("clanName",clanName));
             }
         });
 
@@ -127,7 +127,7 @@ public class MainMenuActivity extends AppCompatActivity{
             }
         });
 
-        //Works:
+
         detachmentBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -105,8 +105,10 @@ public class MembersPageActivity extends AppCompatActivity {
                 int noOfSkills = 0;
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Skill skill = snapshot.getValue(Skill.class);
-                    rate = rate+skill.skillRate;
-                    noOfSkills++;
+                    if(skill.skillRate!=0){
+                        rate = rate+skill.skillRate;
+                        noOfSkills++;
+                    }
                 }
                 rating.setRating(Math.round(rate/noOfSkills));
             }

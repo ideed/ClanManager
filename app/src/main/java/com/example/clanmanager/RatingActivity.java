@@ -84,7 +84,47 @@ public class RatingActivity extends AppCompatActivity {
                                           final Skill skill = dataSnapshot3.getValue(Skill.class);
                                           TextView mySkillText = new TextView(RatingActivity.this);
                                           RatingBar myRatingBar = new RatingBar(RatingActivity.this);
+                                          Button deleteBtn = new Button(RatingActivity.this);
 
+                                          deleteBtn.setText("DELETE SKILL");
+                                          deleteBtn.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View v) {
+                                                  AlertDialog.Builder build = new AlertDialog.Builder(RatingActivity.this);
+                                                  build.setCancelable(false);
+                                                  build.setMessage("Do you wish to delete "+skill.skillName+"?");
+                                                  build.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                      @Override
+                                                      public void onClick(DialogInterface dialog, int which) {
+                                                          memberInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                              @Override
+                                                              public void onDataChange(@NonNull DataSnapshot dataSnapshotMember) {
+                                                                  for(DataSnapshot ds:dataSnapshotMember.getChildren()){
+                                                                      Member memberTwo = ds.getValue(Member.class);
+                                                                      memberInfo.child(memberTwo.memberName).child("skills").child(skill.skillName).removeValue();
+                                                                  }
+                                                              }
+
+                                                              @Override
+                                                              public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                              }
+                                                          });
+                                                          Toast.makeText(RatingActivity.this,"Skill Deleted!",Toast.LENGTH_SHORT).show();
+                                                          finish();
+                                                          startActivity(getIntent());
+                                                      }
+                                                  });
+                                                  build.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                      @Override
+                                                      public void onClick(DialogInterface dialog, int which) {
+                                                          dialog.cancel();
+                                                      }
+                                                  });
+                                                  AlertDialog adTwo = build.create();
+                                                  adTwo.show();
+                                              }
+                                          });
                                           mySkillText.setText(skill.skillName);
                                           mySkillText.setTextSize(20);
                                           myRatingBar.setNumStars(5);
@@ -100,6 +140,7 @@ public class RatingActivity extends AppCompatActivity {
 
                                           ll.addView(mySkillText,lp);
                                           ll.addView(myRatingBar);
+                                          ll.addView(deleteBtn);
                                       }
                                     }
 

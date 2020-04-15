@@ -103,7 +103,7 @@ public class AddMemberActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddMemberActivity.this, MemberActivity.class));
+                finish();
             }
         });
     }

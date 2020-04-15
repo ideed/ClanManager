@@ -1,66 +1,128 @@
 package com.example.clanmanager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.ContentProviderClient;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BehaviorActivity extends AppCompatActivity {
-    SearchView search;
-    RecyclerView memberNameList;
+
     Button submitBtn;
     EditText editComment;
     ToggleButton thumbsUp;
     ToggleButton thumbs_middle;
     ToggleButton thumbsDown;
-
+    ImageButton searchBtn;
+    EditText memberText;
+    TextView memberView;
+    TextView thumbView;
+    DatabaseReference clanInfo;
+    DatabaseReference memberInfo;
+    private String thumb;
+    private String clanName;
+    private String memberId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_behavior);
 
-        search = (SearchView) findViewById(R.id.search);
-        memberNameList = (RecyclerView) findViewById(R.id.recyclerView);
+        clanName = getIntent().getStringExtra("clanName");
+        thumbView = (TextView) findViewById(R.id.thumbView);
         submitBtn = (Button) findViewById(R.id.submitBtn);
         editComment = (EditText) findViewById(R.id.editComment);
         thumbsUp = (ToggleButton) findViewById(R.id.thumbsUp);
         thumbs_middle = (ToggleButton) findViewById(R.id.thumbsMiddle);
         thumbsDown = (ToggleButton) findViewById(R.id.thumbsDown);
+        searchBtn = (ImageButton) findViewById(R.id.searchBtnTwo);
+        memberText = (EditText) findViewById(R.id.memberText);
+        memberView = (TextView) findViewById(R.id.textView14);
+        clanInfo = FirebaseDatabase.getInstance().getReference("clans");
+        memberInfo = clanInfo.child(clanName).child("Members");
 
-        submitBtn.setOnClickListener(new View.OnClickListener(){
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
-                String comment = editComment.getText().toString().trim();
-                if(TextUtils.isEmpty(comment)){
-                    Toast.makeText(BehaviorActivity.this,"Please fill in the comment box.",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else{
-                    Toast.makeText(BehaviorActivity.this,"submitted successfully.", Toast.LENGTH_SHORT).show();
-                }
+                memberInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Boolean checker = true;
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                            Member member = ds.getValue(Member.class);
+                            if(memberText.getText().toString().trim().equals(member.memberName)){
+                                memberView.setText("MEMBER SELECTED: "+member.memberName);
+                                memberId = member.memberName;
+                                checker = false;
+                            }
+                        }
+                        if(checker){
+                            Toast.makeText(BehaviorActivity.this,"Error Member not found please try again.",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                    }
+                });
             }
         });
 
+        thumbsUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thumbView.setText("RATING SELECTED: POSITIVE");
+                thumb = "up";
+            }
+        });
 
+        thumbs_middle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thumbView.setText("RATING SELECTED: NEUTRAL");
+                thumb = "middle";
+            }
+        });
 
-    }
+        thumbsDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thumbView.setText("RATING SELECTED: NEGATIVE");
+                thumb = "down";
+            }
+        });
 
-    public void onCustomToggleThumbsUpClick(View view) {
-        Toast.makeText(this, "CustomToggleThumbsUp", Toast.LENGTH_SHORT).show();
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(memberId)) {
+                    Toast.makeText(BehaviorActivity.this, "Error: Member not selected.", Toast.LENGTH_SHORT).show();
+                } else{
+                    String postId = memberInfo.push().getKey();
+                    SimpleDateFormat df = new SimpleDateFormat("dd.MM.YYYY");
+                    Date currentDate = new Date();
+                    df.format(currentDate);
+                    Behavior b = new Behavior(postId,thumb,currentDate,editComment.getText().toString().trim());
+                    memberInfo.child(memberId).child("Behaviors").child(postId).setValue(b);
+                    Toast.makeText(BehaviorActivity.this, "Behavior reported!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        });
     }
 }
