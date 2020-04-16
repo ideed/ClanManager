@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ public class MembersPageActivity extends AppCompatActivity {
     private DatabaseReference clanInfo;
     private DatabaseReference memberInfo;
     private DatabaseReference skillInfo;
+    private DatabaseReference behaviorInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +61,7 @@ public class MembersPageActivity extends AppCompatActivity {
         clanInfo = FirebaseDatabase.getInstance().getReference("clans");
         memberInfo = clanInfo.child(clanName).child("Members").child(memberName);
         skillInfo = memberInfo.child("skills");
-
+        behaviorInfo = memberInfo.child("Behaviors");
         name.setText(memberName);
         country.setText(memberCOO);
         attendence.setText(attendencePercentage+"%");
@@ -110,7 +113,61 @@ public class MembersPageActivity extends AppCompatActivity {
                         noOfSkills++;
                     }
                 }
-                rating.setRating(Math.round(rate/noOfSkills));
+                if(rate!=0){
+                    rating.setRating(Math.round(rate/noOfSkills));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        behaviorInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                LinearLayout ll = (LinearLayout)findViewById(R.id.behavorLayout);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                ll.removeAllViews();
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    Behavior behavior = ds.getValue(Behavior.class);
+                    ImageView imgView = new ImageView(MembersPageActivity.this);
+                    TextView dateView = new TextView(MembersPageActivity.this);
+                    TextView commentView = new TextView(MembersPageActivity.this);
+                    Button deleteBtn = new Button(MembersPageActivity.this);
+                    SimpleDateFormat df = new SimpleDateFormat("dd.MM.YYYY");
+
+                    if(behavior.thumb.equals("up")){
+                        int id = getResources().getIdentifier("ic_thumbs_up","drawable",getPackageName());
+                        imgView.setImageResource(id);
+                    }else if(behavior.thumb.equals("middle")){
+                        int id = getResources().getIdentifier("ic_thumbs_both","drawable",getPackageName());
+                        imgView.setImageResource(id);
+                    }else{
+                        int id = getResources().getIdentifier("ic_thumbs_down","drawable",getPackageName());
+                        imgView.setImageResource(id);
+                    }
+
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
+                    layoutParams.setMargins(0,0,0,0);
+                    imgView.setLayoutParams(layoutParams);
+
+                    String date = df.format(behavior.date);
+                    dateView.setText("Date: "+date);
+                    dateView.setTextSize(20);
+
+                    commentView.setText("Comment: "+behavior.comment);
+                    commentView.setTextSize(15);
+
+                    deleteBtn.setText("DELETE REPORT");
+
+                    ll.addView(dateView,lp);
+                    ll.addView(imgView);
+                    ll.addView(commentView,lp);
+                    ll.addView(deleteBtn,lp);
+                }
             }
 
             @Override
