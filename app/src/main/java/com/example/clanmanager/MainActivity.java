@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         passwordText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(getApplicationContext(),passwordResetActivity.class));
+                startActivity(new Intent(getApplicationContext(), PasswordResetActivity.class));
             }
         });
     }

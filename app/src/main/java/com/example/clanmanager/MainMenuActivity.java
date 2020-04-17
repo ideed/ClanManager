@@ -102,7 +102,7 @@ public class MainMenuActivity extends AppCompatActivity{
         eventBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainMenuActivity.this,EventActivity.class));
+                startActivity(new Intent(MainMenuActivity.this,EventActivity.class).putExtra("clanName",clanName));
             }
         });
 

@@ -174,6 +174,8 @@ public class RatingActivity extends AppCompatActivity {
                 builder.setCancelable(false);
                 builder.setView(promptsView);
                 final EditText userInput = (EditText)promptsView.findViewById(R.id.editTextDialogUserInput);
+                final TextView textDisplay = (TextView)promptsView.findViewById(R.id.textView1);
+                textDisplay.setText("Enter The Skill Name:");
                 builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

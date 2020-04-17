@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class passwordResetActivity extends AppCompatActivity {
+public class PasswordResetActivity extends AppCompatActivity {
     private EditText userEmail;
     private FirebaseAuth mAuth;
     private Button reset;
@@ -39,10 +39,10 @@ public class passwordResetActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            Toast.makeText(passwordResetActivity.this,"Request sent to email.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PasswordResetActivity.this,"Request sent to email.",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else{
-                            Toast.makeText(passwordResetActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PasswordResetActivity.this,"Error ! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
